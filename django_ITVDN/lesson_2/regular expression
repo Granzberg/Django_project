@@ -1,0 +1,11 @@
+"dog", "box", "bog" - [db]o[gx]
+dog, box, bog, cot - c(ot)
+d, dog, dogog, dogogog - .+[^e-z](og)(og)?
+
+
+
+"cat", "cbt", "ctt" - c[a-z]t
+"cat", "cbt", "ctt" - [^a-z]
+"c", "cat", "catat" "catatatatat" - .+c(at)+
+"dog", "box", "bog", но совпадет с “cot” - c(ot)
+“c", "cat", но не будет совпадать целиком с "catat" или "catatatatat", а будет совпадать только с “cat” в них - c(at)
