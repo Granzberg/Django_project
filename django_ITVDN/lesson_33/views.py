@@ -8,4 +8,4 @@ def index(request):
                   {'priority': 150, 'task': 'Изучать Django'},
                   {'priority': 1, 'task': 'Подумать о смысле жизни'}]
     response = JsonResponse(lets_do_it, safe=False)
-    return HttpResponse(request, 'index.html', content=response)
+    return response
