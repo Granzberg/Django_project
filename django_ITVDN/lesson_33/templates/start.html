@@ -1,10 +1,23 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-  {% block title %}<title>Добро пожаловать во вселенную звездных войн!</title>{% endblock %}
+    <meta charset="UTF-8">
+    <title></title>
+    <h1>Добро пожаловать во вселенную звездных войн!</h1>
 </head>
-
 <body>
-  {% block content %}<!-- default content text (typically empty) -->{% endblock %}
-</body>
-</html>
+<table>
+    <tr>
+        <th>Выберите страницу:</th>
+    </tr>
+    <tr>
+        <td><a href="{% url 'lei' %}" type="button">Лея</a></td>
+    </tr>
+    <tr>
+        <td><a href="{% url 'luke' %}" type="button">Люк</a></td>
+    </tr>
+    <tr>
+        <td><a href="{% url 'khan' %}" type="button">Хан</a></td>
+    </tr>
+</table>
