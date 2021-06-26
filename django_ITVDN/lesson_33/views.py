@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse, FileResponse
+from django.templatetags.static import static
 
 
 def index(request):
@@ -27,3 +27,8 @@ def lei(request):
 def khan(request):
     return HttpResponse("Хан. Соло — пилот космического корабля «Тысячелетний сокол»,"
                         " его бортмехаником и вторым пилотом является вуки по имени Чубакка.")
+
+
+def file(request):
+    print('<h1>Вот ваш файл</h1>')
+    return HttpResponse(content_type='img/001.txt', status=227)
