@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime, timedelta
+import uuid
 
 
 class Сartridge(models.Model):
@@ -52,7 +53,7 @@ class Goods(models.Model):
 class ClientInternet(models.Model):
     first_name = models.CharField(max_length=50, blank=True)
     surname = models.CharField(max_length=50, blank=True)
-    user_uuid = models.UUIDField(editable=False)
+    user_uuid = models.UUIDField(editable=False, primary_key=True, default=uuid.uuid4(), null=False)
     email = models.EmailField(blank=True)
     activation_date = models.DateField(auto_now=False, blank=True)
     ip = models.GenericIPAddressField(blank=True, null=True, protocol='IPv4')
