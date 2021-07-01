@@ -26,38 +26,38 @@ class Basket(models.Model):
 
 # ******************** internet shop ******************************************
 class Category(models.Model):
-    name = models.CharField(max_length=50, default=False)
-    description = models.TextField(max_length=200, default=False)
+    name = models.CharField(max_length=50, default=False, null=True)
+    description = models.TextField(max_length=200, default=False, null=True)
 
     def __str__(self):
         return self.name
 
 
 class Goods(models.Model):
-    name = models.CharField(max_length=65, blank=True)
-    image = models.ImageField(blank=True)
+    name = models.CharField(max_length=65, blank=True, null=True)
+    image = models.ImageField(blank=True, null=True)
     url_wiki = models.URLField(default='https://uk.wikipedia.org/', blank=True)
-    description = models.TextField(max_length=1000, blank=True)
+    description = models.TextField(max_length=1000, blank=True, null=True)
     available = models.BooleanField(default=False)
     count = models.IntegerField(default=0, blank=True)
-    when_available = models.DateTimeField(default=datetime.now, blank=True)
-    discount_available = models.DurationField(default=timedelta(days=7), blank=True)
-    price = models.DecimalField(decimal_places=2, max_digits=8, blank=True)
-    discount  = models.FloatField(default=1.0, blank=True)
-    link = models.ForeignKey(Category, on_delete=models.CASCADE)
+    when_available = models.DateTimeField(default=datetime.now, blank=True, null=True)
+    discount_available = models.DurationField(default=timedelta(days=7), blank=True, null=True)
+    price = models.DecimalField(decimal_places=2, max_digits=8, blank=True, null=True)
+    discount  = models.FloatField(default=1.0, blank=True, null=True)
+    link = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.name
 
 
 class ClientInternet(models.Model):
-    first_name = models.CharField(max_length=50, blank=True)
-    surname = models.CharField(max_length=50, blank=True)
+    first_name = models.CharField(max_length=50, blank=True, null=True)
+    surname = models.CharField(max_length=50, blank=True, null=True)
     user_uuid = models.UUIDField(editable=False, primary_key=True, default=uuid.uuid4(), null=False)
-    email = models.EmailField(blank=True)
-    activation_date = models.DateField(auto_now=False, blank=True)
+    email = models.EmailField(blank=True, null=True)
+    activation_date = models.DateField(auto_now=False, blank=True, null=True)
     ip = models.GenericIPAddressField(blank=True, null=True, protocol='IPv4')
-    invoice = models.FileField(blank=True)
+    invoice = models.FileField(blank=True, null=True)
     many_link = models.ManyToManyField(Goods, verbose_name='You ordered these goods.', blank=True)
 
     def __str__(self):
