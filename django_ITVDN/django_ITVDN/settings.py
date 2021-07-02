@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'lesson_11',
     'lesson_33',
     'lesson_55',
+    'forms',
 ]
 
 MIDDLEWARE = [
@@ -80,12 +81,8 @@ WSGI_APPLICATION = 'django_ITVDN.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'testDb',
-        'USER': 'admin',
-        'PASSWORD': '1234qwert',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
