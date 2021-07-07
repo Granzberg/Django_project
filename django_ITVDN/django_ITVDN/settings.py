@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'lesson_11',
     'lesson_33',
     'lesson_55',
+    'lesson_77',
     'forms',
 ]
 
