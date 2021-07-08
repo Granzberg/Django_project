@@ -2,15 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Authorization</title>
+    <title>Create accounts</title>
 </head>
 <body>
-<form method="POST" >
+
+<form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Confirm</button>
 </form>
 
+<form method="POST">
+    {% csrf_token %}
+    {{ formset }}
+    <button type="submit">Confirm</button>
+</form>>
 
 </body>
 </html>
