@@ -12,11 +12,11 @@ class Accounts22(models.Model):
     name = models.CharField(blank=True, max_length=60)
     email = models.EmailField(blank=True)
     password = models.CharField(max_length=10, blank=True)
-    birthday = models.DateField(default=datetime.date)
+    birthday = models.DateField(default=datetime.timedelta)
     gender = models.CharField(max_length=60,choices= SEX_CHOICES)
 
 
-class Accounts(ModelForm):
+class AccountsModel(ModelForm):
     class Meta:
         model = Accounts22
         fields = ('__all__')

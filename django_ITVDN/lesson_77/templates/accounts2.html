@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create accounts</title>
+    <title>Title</title>
 </head>
 <body>
 
 <form method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ formset }}
     <button type="submit">Confirm</button>
 </form>
 
