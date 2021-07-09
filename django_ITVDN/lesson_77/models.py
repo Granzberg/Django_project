@@ -12,7 +12,7 @@ class Accounts22(models.Model):
     name = models.CharField(blank=True, max_length=60)
     email = models.EmailField(blank=True)
     password = models.CharField(max_length=10, blank=True)
-    birthday = models.DateField(default=datetime.date.year, blank=True)
+    birthday = models.DateField(default=datetime.date(year=1980,month=12,day=30), blank=True)
     gender = models.CharField(max_length=60,choices= SEX_CHOICES)
 
 
