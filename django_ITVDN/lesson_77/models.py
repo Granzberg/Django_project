@@ -1,8 +1,7 @@
 import datetime
-
-from django.db import models
 from django.forms import ModelForm
 from django.db import models
+
 
 
 class Accounts22(models.Model):
@@ -12,7 +11,11 @@ class Accounts22(models.Model):
     name = models.CharField(blank=True, max_length=60)
     email = models.EmailField(blank=True)
     password = models.CharField(max_length=10, blank=True)
+<<<<<<< HEAD
     birthday = models.DateField(default=datetime.date(year=1980,month=12,day=30), blank=True)
+=======
+    birthday = models.DateField(blank=True)
+>>>>>>> 6e705b02737d7ddd92af90b0de9db389a12a4bf2
     gender = models.CharField(max_length=60,choices= SEX_CHOICES)
 
 
@@ -27,4 +30,7 @@ class AccountsModel(ModelForm):
             'name': {'required': ('Please enter your name'),},
             'email': {'required': ('Please enter your available email'),},
             'password': {'required':('Enter a password 6 and 10 symbols')},
+        }
+        help_texts = {
+            'birthday': ('Please enter mm/dd/yy.')
         }

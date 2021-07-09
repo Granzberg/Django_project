@@ -14,11 +14,11 @@ def my_second_form(request):
     return render(request, 'accounts.html', context={'form':form})
 
 
-class my_modelform(FormView):
+class MyModelform(FormView):
     form_class = AccountsModel
     template_name = "accounts2.html"
 
 
 def Review(request):
     form = ReviewForm(request.POST)
-    return render(request, 'Review.html', context={'form':form})
+    return render(request, 'review.html', context={'form':form})
