@@ -11,11 +11,8 @@ class Accounts22(models.Model):
     name = models.CharField(blank=True, max_length=60)
     email = models.EmailField(blank=True)
     password = models.CharField(max_length=10, blank=True)
-<<<<<<< HEAD
     birthday = models.DateField(default=datetime.date(year=1980,month=12,day=30), blank=True)
-=======
     birthday = models.DateField(blank=True)
->>>>>>> 6e705b02737d7ddd92af90b0de9db389a12a4bf2
     gender = models.CharField(max_length=60,choices= SEX_CHOICES)
 
 
