@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'lesson_33',
     'lesson_55',
     'lesson_77',
+    'itvdn',
     'forms',
 ]
 
