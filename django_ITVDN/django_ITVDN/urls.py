@@ -26,6 +26,7 @@ urlpatterns = [
     path('lesson_55/', include('lesson_55.urls')),
     path('lesson_77/', include('lesson_77.urls')),
     path('itvdn/', include('itvdn.urls')),
+    path('itvdn/',include('itvdn.urls')),
     path('forms/', include('forms.urls')),
 
     path('accounts/', include('django_registration.backends.activation.urls')),
