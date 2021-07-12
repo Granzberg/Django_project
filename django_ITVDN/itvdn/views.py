@@ -7,4 +7,4 @@ def product(request):
 
 
 def category(request):
-    pass
+    return HttpResponse(request, 'base.html')

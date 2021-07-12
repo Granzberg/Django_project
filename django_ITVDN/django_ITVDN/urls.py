@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('lesson_1_1/', include('lesson_11.urls')),
@@ -24,5 +25,9 @@ urlpatterns = [
     path('lesson_33/', include('lesson_33.urls')),
     path('lesson_55/', include('lesson_55.urls')),
     path('lesson_77/', include('lesson_77.urls')),
+    path('itvdn/', include('itvdn.urls')),
     path('forms/', include('forms.urls')),
+
+    path('accounts/', include('django_registration.backends.activation.urls')),
+    path('accounts/',include('django.contrib.auth.urls'))
 ]

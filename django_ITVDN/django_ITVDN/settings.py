@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'lesson_33',
     'lesson_55',
     'lesson_77',
+    'itvdn',
     'forms',
 ]
 
@@ -62,7 +63,7 @@ ROOT_URLCONF = 'django_ITVDN.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
