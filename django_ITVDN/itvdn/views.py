@@ -21,3 +21,15 @@ def base_list(request):
     data2 = Product.objects.all()
     context = {'categories': data1, 'products': data2}
     return render(request, 'product_list.html', context=context)
+
+
+def product_search(request):
+    return render(request, 'search_page.html')
+
+
+def search_result(request):
+    print(dir(request))
+    return render(request, 'search_page.html')
+
+
+

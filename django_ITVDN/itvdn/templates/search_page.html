@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="get" action="{% url 'search_result' %}">
+    <label>Write some data: </label>
+    <input name="key">
+    <input type="submit" value="send">
+</form>
+{% endblock %}
