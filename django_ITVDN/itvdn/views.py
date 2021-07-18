@@ -1,10 +1,23 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Product, Category
 
 
-def product(request):
-    return HttpResponse(request, 'product_list.html')
+def products(request):
+    data = Product.objects.all()
+    context = {'products': data}
+    return render(request, 'product_list.html', context=context)
 
 
-def category(request):
-    return HttpResponse(request, 'base.html')
+def categories(request):
+    data = Category.objects.all()
+    context = {'categories': data}
+    for row in data:
+        print(row)
+    return render(request, 'product_list.html', context=context)
+
+
+def base_list(request):
+    data1 = Category.objects.all()
+    data2 = Product.objects.all()
+    context = {'categories': data1, 'products': data2}
+    return render(request, 'product_list.html', context=context)

@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'django_ITVDN.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'test-db',
+        'NAME': 'test_db',
         'USER': 'admin',
         'PASSWORD': '1234qwert',
         'HOST': '127.0.0.1',
