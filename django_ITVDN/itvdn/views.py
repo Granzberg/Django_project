@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Product, Category
+from .forms import RegistrationUser, SearchForm
 
 
 def products(request):
@@ -31,5 +32,20 @@ def search_result(request):
     print(dir(request))
     return render(request, 'search_page.html')
 
+def registration_user(request):
+    context = {
+        'form': RegistrationUser
+    }
+    return render(request, 'registration/login.html',context=context)
 
+def user_form_save(request):
+    form = RegistrationUser(request.GET)
+    if form.is_valid():
+        form.save()
+    return render(request, 'registration/login.html')
 
+def search_form(request):
+    context = {
+        'searchform':SearchForm
+    }
+    return render(request, 'search_page.html', context=context)

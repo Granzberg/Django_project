@@ -1,15 +1,12 @@
-from django.forms import ModelForm
-from .models import Product, Category
+from django import forms
+from django.contrib.auth.models import User
 
-'''
-class ProductForm(ModelForm):
+class RegistrationUser(forms.ModelForm):
     class Meta:
-        model = Product
-        fields = ['name', 'price', 'count', 'category']
+        model = User
+        exclude = ['is_staff', 'is_active', 'date_joined']
 
 
-class CategoryForm(ModelForm):
-    class Meta:
-        model = Category
-        fields = ['name']
-'''
+class SearchForm(forms.Form):
+
+    search_field = forms.CharField(max_length=100, widget=forms.ValidationError)

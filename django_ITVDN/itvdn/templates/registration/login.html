@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<form method="get">
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="get" action="{% url 'user_form_save' %}">
     {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Login">
+ {{ form.email.label }}: {{ form.email }}
+    <input type="submit" value="Save">
 </form>
-</body>
-</html>
+{% endblock %}
