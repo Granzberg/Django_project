@@ -8,5 +8,4 @@ class RegistrationUser(forms.ModelForm):
 
 
 class SearchForm(forms.Form):
-
-    search_field = forms.CharField(max_length=100, widget=forms.ValidationError)
+    search_field = forms.CharField(max_length=100)

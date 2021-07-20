@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<p>Search: {{ search_form }}</p>
-
+<form method="post">
+    {% csrf_token %}
+    <p>{{ form }}</p>
+</form>
 <h4>Category:</h4>
 
 {% for category in categories %}

@@ -1,6 +1,20 @@
 from django.shortcuts import render
 from .models import Product, Category
 from .forms import RegistrationUser, SearchForm
+from django.views.generic import TemplateView
+
+
+class ProductList(TemplateView):
+    extra_context = {'form':SearchForm}
+    template_name = 'product_list.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['products'] = Product.objects.all
+        return context
+
+    def post(self, request):
+        print(request.POST)
 
 
 def products(request):
@@ -25,27 +39,17 @@ def base_list(request):
 
 
 def product_search(request):
-    return render(request, 'search_page.html')
+    context = {
+        'form': SearchForm
+    }
+    return render(request, 'search_page.html', context=context)
 
 
 def search_result(request):
-    print(dir(request))
-    return render(request, 'search_page.html')
-
-def registration_user(request):
-    context = {
-        'form': RegistrationUser
-    }
-    return render(request, 'registration/login.html',context=context)
-
-def user_form_save(request):
-    form = RegistrationUser(request.GET)
+    form = SearchForm(request.GET)
     if form.is_valid():
         form.save()
-    return render(request, 'registration/login.html')
+    return render(request, 'search_page.html')
 
-def search_form(request):
-    context = {
-        'searchform':SearchForm
-    }
-    return render(request, 'search_page.html', context=context)
+
+

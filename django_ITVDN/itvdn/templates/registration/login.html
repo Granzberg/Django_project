@@ -3,7 +3,7 @@
 {% block content %}
 <form method="get" action="{% url 'user_form_save' %}">
     {% csrf_token %}
- {{ form.email.label }}: {{ form.email }}
+    {{ form }}
     <input type="submit" value="Save">
 </form>
 {% endblock %}
