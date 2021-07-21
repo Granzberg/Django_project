@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from .models import Product, Category
 from .forms import RegistrationUser, SearchForm
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
+from django.db.models import Q
 
 
 class Products(TemplateView):
@@ -22,7 +23,16 @@ class Products(TemplateView):
         print(request.POST)
 
 
+class SearchResultsView(ListView):
+    model = Product
+    template_name = 'product_list.html'
 
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = Product.objects.filter(
+            Q(name__icontains=query) | Q(category__icontains=query)
+        )
+        return object_list
 
 
 def product_search(request):
