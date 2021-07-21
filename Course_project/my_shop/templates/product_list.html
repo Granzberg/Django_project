@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <form method="post">
     {% csrf_token %}
     <p>{{ form }}</p>
 </form>
-<h4>Category:</h4>
 
+<h4>Category:</h4>
 {% for category in categories %}
-    <p>Name: {{ category }}</p>
+    <p>Name: {{ category.name }}</p>
 {% endfor %}
 
 <h5>Products:</h5>
-
 {% for product in products %}
     <p>Name: {{ product.name }} | Price: {{ product.price }} | Count: {{ product.count }}</p>
 {% endfor %}
