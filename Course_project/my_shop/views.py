@@ -54,6 +54,6 @@ class SearchResultsView(ListView):
     def get_queryset(self): # новый
         query = self.request.GET.get('q')
         object_list = Product.objects.filter(
-            Q(name__icontains=query) | Q(category__icontains=query)
+            Q(name__icontains=query) | Q(category__name__icontains=query)
         )
         return object_list
