@@ -22,7 +22,7 @@ class Products(TemplateView):
     def post(self, request):
         print(request.POST)
 
-
+'''
 class SearchResultsView(ListView):
     model = Product
     template_name = 'product_list.html'
@@ -40,3 +40,20 @@ def product_search(request):
         'form': SearchForm
     }
     return render(request, 'search_page.html', context=context)
+'''
+
+
+class HomePageView(TemplateView):
+    template_name = 'product_list.html'
+
+
+class SearchResultsView(ListView):
+    model = Product
+    template_name = 'product_list.html'
+
+    def get_queryset(self): # новый
+        query = self.request.GET.get('q')
+        object_list = Product.objects.filter(
+            Q(name__icontains=query) | Q(category__icontains=query)
+        )
+        return object_list
