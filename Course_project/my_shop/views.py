@@ -1,8 +1,11 @@
-from django.shortcuts import render
-from .models import Product, Category
+from django.shortcuts import render, get_object_or_404
+from .models import Product, Category, Choice
 from .forms import RegistrationUser, SearchForm
 from django.views.generic import TemplateView, ListView
 from django.db.models import Q
+from django.views.generic.detail import DetailView
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 
 class Products(TemplateView):
@@ -22,26 +25,6 @@ class Products(TemplateView):
     def post(self, request):
         print(request.POST)
 
-'''
-class SearchResultsView(ListView):
-    model = Product
-    template_name = 'product_list.html'
-
-    def get_queryset(self):
-        query = self.request.GET.get('q')
-        object_list = Product.objects.filter(
-            Q(name__icontains=query) | Q(category__icontains=query)
-        )
-        return object_list
-
-
-def product_search(request):
-    context = {
-        'form': SearchForm
-    }
-    return render(request, 'search_page.html', context=context)
-'''
-
 
 class HomePageView(TemplateView):
     template_name = 'product_list.html'
@@ -49,11 +32,30 @@ class HomePageView(TemplateView):
 
 class SearchResultsView(ListView):
     model = Product
-    template_name = 'product_list.html'
+    template_name = 'search_page.html'
 
     def get_queryset(self): # новый
         query = self.request.GET.get('q')
         object_list = Product.objects.filter(
-            Q(name__icontains=query) | Q(category__name__icontains=query)
+            Q(name__icontains=query)
         )
         return object_list
+
+
+class ProductsView(DetailView):
+    model = Product
+    template = 'product_detail.html'
+
+
+def detail_product(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    try:
+        selected_product = product.choice_set.get(pk=request.POST['choice'])
+    except (KeyError, Choice.DoesNotExist):
+        return render(request, 'product_detail.html',{
+            'product': product,
+            'error_message': "You didn`t selected a choice.",
+        })
+    else:
+        selected_product.save()
+        return HttpResponseRedirect(reverse('product', args=(product.id,)))

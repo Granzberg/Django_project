@@ -5,7 +5,8 @@
 <form method="get" action="{% url 'search_results' %}">
     {% csrf_token %}
 
-    <input name="q" type="text" placeholder="Search...">
+    <input name="q" type="text">
+    <input type="submit" value="Search">
 
 </form>
 

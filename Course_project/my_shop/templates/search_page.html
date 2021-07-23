@@ -4,9 +4,13 @@
 <ul>
     {% for product in object_list %}
     <li>
-        {{ product.name }}
+        <p>Name: {{ product.name }} | Price: {{ product.price }} | Count: {{ product.count }}</p>
     </li>
     {% endfor %}
 </ul>
+
+<button type="button">
+    <a href="{% url 'products' %}">Home</a>
+</button>
 
 {% endblock %}

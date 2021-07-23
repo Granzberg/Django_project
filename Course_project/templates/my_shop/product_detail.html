@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="{% url 'product' product.id %}" method="post">
+    {% csrf_token %}
+    {% for product in product.choice_set.all %}
+        <input type="radio" name="product" id="product{{ forloop.counter }}" value="{{ product.id }}">
+        <label for="product{{ forloop.counter }}">{{ product.name }}</label><br>
+
+    {% endfor %}
+<input type="submit" value="products">
+
+</form>
+
+{% endblock %}

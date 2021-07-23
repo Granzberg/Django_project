@@ -19,3 +19,13 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Choice(models.Model):
+    name = models.TextField(max_length=100)
+    price = models.DecimalField(max_digits=8, decimal_places=2)
+    count = models.IntegerField()
+    image = models.ImageField()
+
+    def __str__(self):
+        return self.name
