@@ -11,7 +11,7 @@ from django.urls import reverse
 class Products(TemplateView):
     extra_context = {'form': SearchForm}
     template_name = 'product_list.html'
-    context_object_name = 'categories'
+    context_object_name = 'categories', 'product'
     model = Category
 
     def get_context_data(self, **kwargs):
@@ -44,7 +44,8 @@ class SearchResultsView(ListView):
 
 class ProductsView(DetailView):
     model = Product
-    template = 'product_detail.html'
+    template_name = 'my_shop/product_detail.html'
+    context_object_name = 'product'
 
 
 def detail_product(request, product_id):
@@ -52,7 +53,7 @@ def detail_product(request, product_id):
     try:
         selected_product = product.choice_set.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
-        return render(request, 'product_detail.html',{
+        return render(request, 'product_detail.html', {
             'product': product,
             'error_message': "You didn`t selected a choice.",
         })
