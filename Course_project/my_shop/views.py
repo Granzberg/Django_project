@@ -27,7 +27,7 @@ class Products(TemplateView):
 
 
 class HomePageView(TemplateView):
-    template_name = 'product_list.html'
+    template_name = 'base.html'
 
 
 class SearchResultsView(ListView):
@@ -50,6 +50,7 @@ class ProductsView(DetailView):
 
 def detail_product(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
+    print('sdsadad', product_id)
     try:
         selected_product = product.choice_set.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
@@ -58,5 +59,6 @@ def detail_product(request, product_id):
             'error_message': "You didn`t selected a choice.",
         })
     else:
+
         selected_product.save()
         return HttpResponseRedirect(reverse('product', args=(product.id,)))

@@ -22,6 +22,7 @@ class Category(models.Model):
 
 
 class Choice(models.Model):
+    DoesNotExist = None
     name = models.TextField(max_length=100)
     price = models.DecimalField(max_digits=8, decimal_places=2)
     count = models.IntegerField()

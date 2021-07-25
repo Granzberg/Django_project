@@ -20,5 +20,8 @@
     <p>Name: {{ product.name }} | Price: {{ product.price }} | Count: {{ product.count }}</p>
 {% endfor %}
 
+<button type="button">
+    <a href="{% url 'home' %}">Home</a>
+</button>
 {% endblock %}
 
