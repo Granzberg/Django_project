@@ -4,7 +4,7 @@ from .forms import RegistrationUser, SearchForm
 from django.views.generic import TemplateView, ListView
 from django.db.models import Q
 from django.views.generic.detail import DetailView
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 from django.urls import reverse
 
 
@@ -48,17 +48,7 @@ class ProductsView(DetailView):
     context_object_name = 'product'
 
 
-def detail_product(request, product_id):
-    product = get_object_or_404(Product, pk=product_id)
-    print('sdsadad', product_id)
-    try:
-        selected_product = product.choice_set.get(pk=request.POST['choice'])
-    except (KeyError, Choice.DoesNotExist):
-        return render(request, 'product_detail.html', {
-            'product': product,
-            'error_message': "You didn`t selected a choice.",
-        })
-    else:
-
-        selected_product.save()
-        return HttpResponseRedirect(reverse('product', args=(product.id,)))
+def detail_product(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    print('sdsadad', pk)
+    return render(request, 'my_shop/product_detail.html', context={'product': product})
