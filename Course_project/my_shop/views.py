@@ -34,7 +34,7 @@ class SearchResultsView(ListView):
     model = Product
     template_name = 'search_page.html'
 
-    def get_queryset(self): # новый
+    def get_queryset(self):
         query = self.request.GET.get('q')
         object_list = Product.objects.filter(
             Q(name__icontains=query)
@@ -44,11 +44,11 @@ class SearchResultsView(ListView):
 
 class ProductsView(DetailView):
     model = Product
-    template_name = 'my_shop/product_detail.html'
+    template_name = 'product_detail.html'
     context_object_name = 'product'
 
 
 def detail_product(request, pk):
     product = get_object_or_404(Product, pk=pk)
-    print('sdsadad', pk)
-    return render(request, 'my_shop/product_detail.html', context={'product': product})
+
+    return render(request, 'product_detail.html', context={'product': product})
