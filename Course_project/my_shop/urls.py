@@ -9,4 +9,5 @@ urlpatterns = [
     path('product-list/', views.Products.as_view(), name='product-list'),
     path('search/', views.SearchResultsView.as_view(), name='search_results'),
     path('product_views/<int:pk>/', views.detail_product, name='product'),
+    path('register_user/', views.RegistrationUser, name='register_user')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
