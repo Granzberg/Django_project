@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from .models import Comment
 
 
 class RegistrationUser(forms.ModelForm):
@@ -14,3 +15,9 @@ class RegistrationUser(forms.ModelForm):
 
 class SearchForm(forms.Form):
     search_field = forms.CharField(max_length=100)
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('name', 'email', 'body')

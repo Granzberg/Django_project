@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import User
 
 
 class Product(models.Model):
@@ -33,5 +32,19 @@ class Choice(models.Model):
         return self.name
 
 
-class MyUser(User):
-    pass
+class Comment(models.Model):
+    post = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='comments')
+    name = models.TextField(max_length=100)
+    email = models.EmailField()
+    body = models.TextField()
+    create_on = models.DateTimeField(auto_now_add=True)
+    activate = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['create_on']
+
+    def __str__(self):
+        return 'Comment {} by {}'.format(self.body, self.name)
+
+
+

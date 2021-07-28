@@ -1,11 +1,9 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Product, Category, Choice
-from .forms import RegistrationUser, SearchForm
+from .models import Product, Category, Comment
+from .forms import RegistrationUser, SearchForm, CommentForm
 from django.views.generic import TemplateView, ListView
 from django.db.models import Q
 from django.views.generic.detail import DetailView
-from django.http import HttpResponse
-from django.urls import reverse
 
 
 class Products(TemplateView):
@@ -47,8 +45,31 @@ class ProductsView(DetailView):
     template_name = 'product_detail.html'
     context_object_name = 'product'
 
+    def post(self, request):
+        print(request.POST)
+
 
 def detail_product(request, pk):
-    product = get_object_or_404(Product, pk=pk)
+    post = get_object_or_404(Product, pk=pk)
+    comments = post.comments.filter(activate=True)
+    print(comments)
+    if request.method == 'POST':
 
-    return render(request, 'product_detail.html', context={'product': product})
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            new_comment = Comment(
+                name=comment_form.cleaned_data['name'],
+                email=comment_form.cleaned_data['email'],
+                body=comment_form.cleaned_data['body'],
+                post=post
+            )
+            new_comment.post = post
+            new_comment.save()
+        else:
+            comment_form.errors()
+    else:
+        comment_form = CommentForm()
+
+    return render(request, 'product_detail.html', context={'product': post, 'post': post, 'comments': comments,
+                                                           'comment_form': comment_form})
+
