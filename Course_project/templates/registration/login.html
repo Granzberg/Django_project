@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Login page</h1>
+
+<form method="post" action="{% url 'login' %}">
+    <p>{{ username }}</p>
+    <p>{{ password }}</p>
+</form>
+<button type="button">
+    <a href="{% url 'home' %}">Home</a>
+</button>
+
+{% endblock %}

@@ -5,6 +5,9 @@ from django.views.generic import TemplateView, ListView
 from django.db.models import Q
 from django.views.generic.detail import DetailView
 
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import AuthenticationForm
+
 
 class Products(TemplateView):
     extra_context = {'form': SearchForm}
@@ -72,4 +75,17 @@ def detail_product(request, pk):
 
     return render(request, 'product_detail.html', context={'product': post, 'post': post, 'comments': comments,
                                                            'comment_form': comment_form})
+
+
+#def LoginView(request):
+    # username = request.POST['username']
+    # password = request.POST['password']
+    # user = authenticate(request, username=username, password=password)
+    # if user is not None:
+    #     login(request, user)
+    #     # Redirect to a success page.
+    #     ...
+    # else:
+    #     # Return an 'invalid login' error message.
+    #     ...
 

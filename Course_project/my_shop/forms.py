@@ -21,3 +21,10 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('name', 'email', 'body')
+
+
+# class PersonalAccount(forms.ModelForm):
+#     class Meta:
+#         model = AccountModel
+#         fields = ('username', 'first_name', 'last_name', 'email', 'date_joined', 'password', 'last_login')
+

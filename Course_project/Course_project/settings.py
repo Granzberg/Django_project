@@ -138,5 +138,5 @@ ACCOUNT_ACTIVATION_DAYS = 7
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'gering225@gmail.com'
-EMAIL_HOST_PASSWORD = 'Granzberg225'
+EMAIL_HOST_USER = 'testsmails225@gmail.com'
+EMAIL_HOST_PASSWORD = '1234Qwert'

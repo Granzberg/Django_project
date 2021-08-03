@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+from django.contrib.auth import get_user_model
 
 
 class Product(models.Model):
@@ -47,4 +49,21 @@ class Comment(models.Model):
         return 'Comment {} by {}'.format(self.body, self.name)
 
 
+class AccountModel(models.Model):
+    username = models.CharField()
+    first_name = models.CharField()
+    last_name = models.CharField()
+    email = models.EmailField()
+    date_joined = models.DateTimeField()
+    password = models.CharField()
+    last_login = models.DateTimeField()
+    user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
 
+
+class CustomUser(AbstractUser):
+    def save(self, *args, **kwargs):
+        data = super(CustomUser, self).save(*args, **kwargs)
+        AccountModel.objects.create(
+            user=self,
+        )
+        return data
